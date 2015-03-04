@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="cal.css">
+<style type="text/css"></style>
+<SCRIPT LANGUAGE="JavaScript">
+function addChar(input, character) {
+	if(input.value == null || input.value == "0")
+		input.value = character
+	else
+		input.value += character
+}
+
+function deleteChar(input) {
+	input.value = input.value.substring(0, input.value.length - 1)
+}
+
+function changeSign(input) {
+	if(input.value.substring(0, 1) == "-")
+		input.value = input.value.substring(1, input.value.length)
+	else
+		input.value = "-" + input.value
+}
+
+function compute(form) {
+	form.display.value = eval(form.display.value)
+}
+
+function checkNum(str) {
+	for (var i = 0; i < str.length; i++) {
+		var ch = str.substring(i, i+1)
+		if (ch < "0" || ch > "9") {
+			if (ch != "/" && ch != "*" && ch != "+" && ch != "-" && ch != "."
+				&& ch != "(" && ch!= ")") {
+				alert("invalid entry!")
+				return false
+				}
+			}
+		}
+		return true
+}
+</SCRIPT>
+<P id="HEAD">HW2: Calculator Implementation</P>
+<br>
+<P id="NETID">Yifan Guo(NetID:ygs671)</P>
+</head>
+
+<body>
+<div id="calculator">
+	<!-- Screen and clear key -->
+	<div class="top">
+		
+		<FORM NAME="sci-calc">
+        <TABLE>	
+        <TR>
+        <TD COLSPAN="4" ALIGN="center" class="screen"><INPUT NAME="display" VALUE="0" SIZE="28" MAXLENGTH="25"></TD>
+        </TR>
+
+        <TR>
+        <TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  MC  " ></TD>
+        <TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  M+  " ></TD>
+        <TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  M-  " ></TD>
+        <TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  MR  " ></TD>
+		</TR>
+
+        <TR>
+        <TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  C  " ONCLICK="this.form.display.value = 0 "></TD>
+        <TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  ±  " ONCLICK="changeSign(this.form.display)"></TD>
+        <TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  ÷  " ONCLICK="addChar(this.form.display, '/')"></TD>
+        <TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  ×  " ONCLICK="addChar(this.form.display, '*')"></TD>
+		</TR>
+
+		<TR>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  7  " ONCLICK="addChar(this.form.display, '7')"></TD>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  8  " ONCLICK="addChar(this.form.display, '8')"></TD>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  9  " ONCLICK="addChar(this.form.display, '9')"></TD>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  -  " ONCLICK="addChar(this.form.display, '-')"></TD>
+		</TR>
+
+		<TR>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  4  " ONCLICK="addChar(this.form.display, '4')"></TD>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  5  " ONCLICK="addChar(this.form.display, '5')"></TD>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  6  " ONCLICK="addChar(this.form.display, '6')"></TD>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  +  " ONCLICK="addChar(this.form.display, '+')"></TD>
+		</TR>
+
+		<TR>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  1  " ONCLICK="addChar(this.form.display, '1')"></TD>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  2  " ONCLICK="addChar(this.form.display, '2')"></TD>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  3  " ONCLICK="addChar(this.form.display, '3')"></TD>
+        <TD ROWSPAN="2" ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  =  " id="enter" ONCLICK="if (checkNum(this.form.display.value)) { compute(this.form) }"></TD>
+        </TR>
+
+		<TR>
+		<TD COLSPAN="2" ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="  0  " ONCLICK="addChar(this.form.display, '0')"></TD>
+		<TD ALIGN="center" class="keys"><INPUT TYPE="button" VALUE="   .  " ONCLICK="addChar(this.form.display, '.')"></TD>
+	    </TR>
+        </TABLE>
+        </FORM>
+	</div>	
+</body>
+</html>
